@@ -4,21 +4,21 @@
  */
 class INCOM_Frontend {
     private static $status_body_class = 'inline-comments';
-    
+
     function init() {
         if (!is_admin() && $this->test_if_status_is_off()) {
             self::$status_body_class = 'inline-comments-off';
             add_filter( 'body_class' , array( $this, 'body_class' ) );
             return;
         }
-        
+
 		add_filter( 'body_class' , array( $this, 'body_class' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_jquery' ) );
         require_once( INCOM_PATH . 'frontend/class-wp.php' );
         new INCOM_WordPress();
-        
+
     }
-    
+
 	/**
 	 * Add class to <body> that identifies the usage of this plugin
 	 * @since 2.1
@@ -50,7 +50,7 @@ class INCOM_Frontend {
 			return '15';
 		}
 	}
-    
+
  	/**
  	 * Test if status is "off" for specific post/page
  	 */
@@ -65,14 +65,14 @@ class INCOM_Frontend {
 			$post_id = $post->ID;
 		}
 
-		// When the individual status for a page/post is 'off', all the other setting don't matter. So this has to be tested at first. 
+		// When the individual status for a page/post is 'off', all the other setting don't matter. So this has to be tested at first.
 		if (get_post_meta( $post_id, INCOM_OPTION_KEY.'_status', true ) &&
                 get_post_meta( $post_id, INCOM_OPTION_KEY.'_status', true ) === 'off') {
 			$result = true;
 		} else if (!get_option(INCOM_OPTION_KEY.'_status_default') ||   // Load when no option is defined yet
                 get_post_meta( $post_id, INCOM_OPTION_KEY.'_status', true ) === 'on' && is_singular() ||
                 get_option(INCOM_OPTION_KEY.'_status_default') === 'on' ||
-                get_option(INCOM_OPTION_KEY.'_status_default') === 'on_posts' && is_single() || 
+                get_option(INCOM_OPTION_KEY.'_status_default') === 'on_posts' && is_single() ||
                 get_option(INCOM_OPTION_KEY.'_status_default') === 'on_pages' && is_page() ||
                 get_option(INCOM_OPTION_KEY.'_status_default') === 'on_posts_pages' && (is_single()||is_page()) ||
                 get_option(INCOM_OPTION_KEY.'_status_default') === 'on_posts_pages_custom' &&

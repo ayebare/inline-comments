@@ -14,10 +14,10 @@ function incom_plugin_activation() {
 		$signup = '<div id="mc_embed_signup">
 				<form action="http://kevinw.us2.list-manage.com/subscribe/post?u=f65d804ad274b9c8812b59b4d&amp;id=20c3ab10d8" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 					<div class="mc-field-group">
-						<label for="mce-EMAIL" style="line-height:2.5em">'.INCOM_NEWS_TEXT.'</label><br>
-						<input type="email" value="'. esc_html__( 'Enter your email address', 'inline-comments' ) .'" name="EMAIL" class="required email" id="mce-EMAIL" onclick="this.focus();this.select()" onfocus="if(this.value == \'\') { this.value = this.defaultValue; }" onblur="if(this.value == \'\') { this.value = this.defaultValue; }">
-						<input type="hidden" name="GROUPS" id="GROUPS" value="'.INCOM_VERSION_NAME.'" />
-						<input type="submit" value="'.INCOM_NEWS_BUTTON.'" name="subscribe" id="mc-embedded-subscribe" class="button">
+						<label for="mce-EMAIL" style="line-height:2.5em">' . esc_html( INCOM_NEWS_TEXT ) . '</label><br>
+						<input type="email" value="'. esc_attr( __( 'Enter your email address', 'inline-comments' ) ) . '" name="EMAIL" class="required email" id="mce-EMAIL" onclick="this.focus();this.select()" onfocus="if(this.value == \'\') { this.value = this.defaultValue; }" onblur="if(this.value == \'\') { this.value = this.defaultValue; }">
+						<input type="hidden" name="GROUPS" id="GROUPS" value="' . esc_attr( INCOM_VERSION_NAME ) . '" />
+						<input type="submit" value="' . esc_attr( INCOM_NEWS_BUTTON ) .'" name="subscribe" id="mc-embedded-subscribe" class="button">
 					</div>
 					<div id="mce-responses" class="clear">
 						<div class="response" id="mce-error-response" style="display:none"></div>
@@ -69,7 +69,7 @@ class INCOM_Register {
 	function incom_plugin_notice_activation() {
 	  if ( $notices = get_option( 'incom_deferred_admin_notices' ) ) {
 	    foreach ($notices as $notice) {
-	      echo "<div class='updated'><p>$notice</p></div>";
+	      echo '<div class="updated"><p>' . esc_html( $notice ) . '</p></div>';
 	    }
 	    delete_option( 'incom_deferred_admin_notices' );
 	  }

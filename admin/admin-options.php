@@ -43,7 +43,7 @@
                     <tr valign="top">
                         <th scope="row"><?php esc_html_e( 'Selectors', 'inline-comments' ); ?> <span class="newred"><?php esc_html_e( 'Updated', 'inline-comments' ); ?></th>
                         <td>
-                            <textarea rows="3" cols="70" type="text" name="multiselector" placeholder="selector1, selector2, selectorN"><?php echo sanitize_text_field(get_option('multiselector')); ?></textarea><br>
+                            <textarea rows="3" cols="70" type="text" name="multiselector" placeholder="selector1, selector2, selectorN"><?php echo esc_textarea(get_option('multiselector')); ?></textarea><br>
                             <span><?php esc_html_e( 'Insert selectors in order to control beside which sections the comment bubbles should be displayed.', 'inline-comments' ); ?><br><br><?php esc_html_e( 'You can insert selectors like that:', 'inline-comments' ); ?> <i><?php esc_html_e( 'selector1, selector2, selectorN', 'inline-comments' ); ?></i><br><?php esc_html_e( 'Example:', 'inline-comments' ); ?> <i><?php esc_html_e( 'h1, .entry-content p, span, blockquote', 'inline-comments' ); ?></i></span>
                         </td>
                     </tr>
@@ -79,7 +79,7 @@
                                 $arr_selectors = array( ".site-main", ".site-inner", ".site", "#page", "html" );
                                 $selectors = implode( '<br>' , $arr_selectors );
                             ?>
-                            <input type="text" name="moveselector" placeholder="body" value="<?php echo sanitize_text_field(get_option('moveselector')); ?>" />
+                            <input type="text" name="moveselector" placeholder="body" value="<?php echo esc_attr(get_option('moveselector')); ?>" />
                                 <br>
                                 <span><?php esc_html_e( 'This selector defines which content should slide left/right when the user clicks on a bubble. This setting depends on your theme\'s structure.', 'inline-comments' ); ?> <?php esc_html_e( 'Default is', 'inline-comments' ); ?> <i>html</i>.
                                     <br><br><?php esc_html_e( 'You might try one of these selectors:', 'inline-comments' ); ?>
@@ -141,7 +141,7 @@
                         <th scope="row"><?php esc_html_e( 'Display Avatars', 'inline-comments' ); ?><br><span class="description thin"><?php esc_html_e( 'next to each comment', 'inline-comments' ); ?></span></th>
                         <td>
                             <input name="<?php echo esc_attr(INCOM_OPTION_KEY); ?>_avatars_display" type="checkbox" value="1" <?php checked( '1', get_option( INCOM_OPTION_KEY.'_avatars_display' ) ); ?> /><span><?php esc_html_e( 'If checked, avatars will be displayed next to each comment.', 'inline-comments' ); ?></span><br><br>
-                            <input type="number" name="<?php echo esc_attr(INCOM_OPTION_KEY); ?>_avatars_size" placeholder="15" value="<?php echo sanitize_text_field(get_option( INCOM_OPTION_KEY.'_avatars_size' )); ?>" /><span><?php esc_html_e( 'Define avatar size (in px). Insert an integer higher than 0.', 'inline-comments' ); ?></span>
+                            <input type="number" name="<?php echo esc_attr(INCOM_OPTION_KEY); ?>_avatars_size" placeholder="15" value="<?php echo esc_attr(get_option( INCOM_OPTION_KEY.'_avatars_size' )); ?>" /><span><?php esc_html_e( 'Define avatar size (in px). Insert an integer higher than 0.', 'inline-comments' ); ?></span>
                         </td>
                     </tr>
                     <tr valign="top">
@@ -162,7 +162,7 @@
                     <tr valign="top">
                         <th scope="row"><?php esc_html_e( 'Background Opacity', 'inline-comments' ); ?><span class="description thin"><br><?php esc_html_e( 'for comment threads', 'inline-comments' ); ?></span></th>
                         <td>
-                            <input type="text" name="incom_set_bgopacity" placeholder="1" value="<?php echo sanitize_text_field(get_option('incom_set_bgopacity')); ?>" /><br><span><?php esc_html_e( 'Insert a value from 0 to 1 where "1" means maximum covering power. Insert 0.7 to make the opacity 70%.', 'inline-comments' ); ?></span>
+                            <input type="text" name="incom_set_bgopacity" placeholder="1" value="<?php echo esc_attr(get_option('incom_set_bgopacity')); ?>" /><br><span><?php esc_html_e( 'Insert a value from 0 to 1 where "1" means maximum covering power. Insert 0.7 to make the opacity 70%.', 'inline-comments' ); ?></span>
                         </td>
                     </tr>
                     <tr valign="top">

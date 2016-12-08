@@ -36,24 +36,24 @@ class Incom_Meta {
 	function meta_box( $post ) {
 		$post_id = $post->ID;
 		$values = get_post_custom( $post_id );
-		
+
 		$select_name = $this->select_name;
         $selected = isset( $values[$select_name] ) ? esc_attr( $values[$select_name][0] ) : '';
-        
+
 //		 wp_nonce_field( 'add_incom_meta_box_nonce', INCOM_OPTION_KEY.'_meta_box_nonce' );
 		?>
 
         <p>
-            <label for="<?php echo $select_name; ?>">
+            <label for="<?php echo esc_attr( $select_name ); ?>">
                 <?php
-                        printf( __( 'Use Inline Comments on this %s?', 'inline-comments' ),
-                            get_current_screen()->post_type
+                        printf( esc_html__( 'Use Inline Comments on this %s?', 'inline-comments' ),
+                            esc_html( get_current_screen()->post_type )
                         );
                     ?>
             </label>
         </p>
         <p>
-            <select class="select" type="select" name="<?php echo $select_name; ?>" id="<?php echo $select_name; ?>">
+            <select class="select" type="select" name="<?php echo esc_attr( $select_name ); ?>" id="<?php echo esc_attr( $select_name ); ?>">
                 <?php $meta_element_class = get_post_meta($post_id, $select_name, true);	?>
                     <option value="default" <?php selected( $meta_element_class, 'default' ); ?>>
                         <?php esc_html_e( 'Default', 'inline-comments' ); ?>
@@ -69,12 +69,12 @@ class Incom_Meta {
         <?php
         if (!comments_open($post_id)) {
             echo '<p>';
-            printf( __( 'ATTENTION! Looks like comments are not allowed for this %s. Make sure that comments are allowed if you want to use Inline Comments.', 'inline-comments' ),
-                get_current_screen()->post_type
+            printf( esc_html__( 'ATTENTION! Looks like comments are not allowed for this %s. Make sure that comments are allowed if you want to use Inline Comments.', 'inline-comments' ),
+                esc_html( get_current_screen()->post_type )
             );
             echo '</p>';
         }
-        
+
         do_action( INCOM_OPTION_KEY.'_meta_box_after', $post_id );
     }
 
@@ -82,13 +82,13 @@ class Incom_Meta {
 
 		// Bail if we're doing an auto save
 		if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
-		
+
 		// // If our nonce isn't there, or we can't verify it, bail
-		// if ( 
+		// if (
 		// 	!empty( $_POST ) &&
 		// 	(
 		// 		!isset( $_POST[INCOM_OPTION_KEY.'_meta_box_nonce'] )
-		// 		|| !wp_verify_nonce( $_POST[INCOM_OPTION_KEY.'_meta_box_nonce'], 'add_incom_meta_box_nonce' ) 
+		// 		|| !wp_verify_nonce( $_POST[INCOM_OPTION_KEY.'_meta_box_nonce'], 'add_incom_meta_box_nonce' )
 		// 	)
 		// ) {
 		// 	print 'Sorry, your nonce did not verify.';

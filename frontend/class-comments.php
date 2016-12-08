@@ -123,12 +123,12 @@ class INCOM_Comments extends INCOM_Frontend {
 		}
 		$data_incom = get_comment_meta( $comment->comment_ID, $this->DataIncomKey, true );
 		?>
-		
+
 		<<?php echo $tag; /* XSS ok */ ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ) ?> id="comment-<?php comment_ID() ?>" data-incom-comment="<?php echo esc_attr($data_incom); ?>" style="display:none">
 		<?php if ( 'div' != $args['style'] ) : ?>
 
 		<div id="incom-div-comment-<?php comment_ID() ?>" class="incom-div-comment comment-body">
-		
+
 		<?php
 			endif;
 
@@ -139,10 +139,10 @@ class INCOM_Comments extends INCOM_Frontend {
 
 		<div class="comment-author vcard">
 			<?php if ( $args['avatar_size'] != 0 ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-			<?php printf( __( '<cite class="fn">%s</cite>' ), get_comment_author_link() ); ?>
+			<?php printf( '<cite class="fn">%s</cite>', esc_html( get_comment_author_link() ) ); ?>
 		</div>
 		<?php if ( $comment->comment_approved == '0' ) : ?>
-			<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></em>
+			<em class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'inline-comments' ); ?></em>
 			<br />
 		<?php endif; ?>
 
@@ -273,7 +273,7 @@ class INCOM_Comments extends INCOM_Frontend {
 	 */
 	private function loadCancelX() {
 		if ( get_option( 'cancel_x' ) !== '1' ) {
-			return '<a class="incom-cancel incom-cancel-x" href title="'. esc_html__($this->loadCancelLinkText, 'inline-comments' ) . '">&#10006;</a>';
+			return '<a class="incom-cancel incom-cancel-x" href title="'. esc_html( $this->loadCancelLinkText ) . '">&#10006;</a>';
 		}
 	}
 
@@ -282,7 +282,7 @@ class INCOM_Comments extends INCOM_Frontend {
 	 */
 	private function loadCancelLink() {
 		if ( get_option( 'cancel_link' ) !== '1' ) {
-			return '<a class="incom-cancel incom-cancel-link" href title>' . esc_html__($this->loadCancelLinkText, 'inline-comments' ) . '</a>';
+			return '<a class="incom-cancel incom-cancel-link" href title>' . esc_html( $this->loadCancelLinkText ) . '</a>';
 		}
 	}
 
