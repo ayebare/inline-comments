@@ -24,7 +24,7 @@ class Incom_Meta {
 		foreach ( $screens as $screen ) {
 			add_meta_box(
 				'meta-box-incom',
-				__( 'Inline Comments', INCOM_TD ),
+				__( 'Inline Comments', 'inline-comments' ),
 				array( $this, 'meta_box' ),
 				$screen,
 				'side',	// Position
@@ -46,7 +46,7 @@ class Incom_Meta {
         <p>
             <label for="<?php echo $select_name; ?>">
                 <?php
-                        printf( __( 'Use Inline Comments on this %s?', INCOM_TD ),
+                        printf( __( 'Use Inline Comments on this %s?', 'inline-comments' ),
                             get_current_screen()->post_type
                         );
                     ?>
@@ -56,20 +56,20 @@ class Incom_Meta {
             <select class="select" type="select" name="<?php echo $select_name; ?>" id="<?php echo $select_name; ?>">
                 <?php $meta_element_class = get_post_meta($post_id, $select_name, true);	?>
                     <option value="default" <?php selected( $meta_element_class, 'default' ); ?>>
-                        <?php esc_html_e( 'Default', INCOM_TD ); ?>
+                        <?php esc_html_e( 'Default', 'inline-comments' ); ?>
                     </option>
                     <option value="on" <?php selected( $meta_element_class, 'on' ); ?>>
-                        <?php esc_html_e( 'On', INCOM_TD ); ?>
+                        <?php esc_html_e( 'On', 'inline-comments' ); ?>
                     </option>
                     <option value="off" <?php selected( $meta_element_class, 'off' ); ?>>
-                        <?php esc_html_e( 'Off', INCOM_TD ); ?>
+                        <?php esc_html_e( 'Off', 'inline-comments' ); ?>
                     </option>
             </select>
         </p>
         <?php
         if (!comments_open($post_id)) {
             echo '<p>';
-            printf( __( 'ATTENTION! Looks like comments are not allowed for this %s. Make sure that comments are allowed if you want to use Inline Comments.', INCOM_TD ),
+            printf( __( 'ATTENTION! Looks like comments are not allowed for this %s. Make sure that comments are allowed if you want to use Inline Comments.', 'inline-comments' ),
                 get_current_screen()->post_type
             );
             echo '</p>';

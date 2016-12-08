@@ -34,7 +34,7 @@ class INCOM_Comments extends INCOM_Frontend {
 			$data_incom = get_comment_meta( $comment->comment_ID, $this->DataIncomKey, true );
 
 			if ( $data_incom != '' ) {	// Only display reference when comment actually references on a paragraph/element
-				$jump_to_text = esc_html__( 'Reference', INCOM_TD );
+				$jump_to_text = esc_html__( 'Reference', 'inline-comments' );
 				$jump_to = "<span class='incom-ref-link' data-incom-ref='$data_incom'>$jump_to_text</span>";
 				$comment_text .= "<span class='incom-ref'>$jump_to</span>";
 			}
@@ -211,12 +211,12 @@ class INCOM_Comments extends INCOM_Frontend {
 
 		$fields =  array(
 		  'author' =>
-		    '<p class="comment-form-author"><label for="author">' . esc_html__( 'Name', INCOM_TD ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
+		    '<p class="comment-form-author"><label for="author">' . esc_html__( 'Name', 'inline-comments' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
 		    '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
 		    '" size="30"' . $aria_req . ' /></p>',
 
 		  'email' =>
-		    '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', INCOM_TD ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
+		    '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'inline-comments' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
 		    '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) .
 		    '" size="30"' . $aria_req . ' /></p>',
 		);
@@ -224,7 +224,7 @@ class INCOM_Comments extends INCOM_Frontend {
 		if ( get_option( 'incom_field_url' ) !== '1' ) {
 			$fields_url = array(
 			  'url' =>
-			    '<p class="comment-form-url"><label for="url">' . esc_html__( 'Website', INCOM_TD ) . '</label>' .
+			    '<p class="comment-form-url"><label for="url">' . esc_html__( 'Website', 'inline-comments' ) . '</label>' .
 			    '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) .
 			    '" size="30" /></p>',
 			);
@@ -273,7 +273,7 @@ class INCOM_Comments extends INCOM_Frontend {
 	 */
 	private function loadCancelX() {
 		if ( get_option( 'cancel_x' ) !== '1' ) {
-			return '<a class="incom-cancel incom-cancel-x" href title="'. esc_html__($this->loadCancelLinkText, INCOM_TD ) . '">&#10006;</a>';
+			return '<a class="incom-cancel incom-cancel-x" href title="'. esc_html__($this->loadCancelLinkText, 'inline-comments' ) . '">&#10006;</a>';
 		}
 	}
 
@@ -282,7 +282,7 @@ class INCOM_Comments extends INCOM_Frontend {
 	 */
 	private function loadCancelLink() {
 		if ( get_option( 'cancel_link' ) !== '1' ) {
-			return '<a class="incom-cancel incom-cancel-link" href title>' . esc_html__($this->loadCancelLinkText, INCOM_TD ) . '</a>';
+			return '<a class="incom-cancel incom-cancel-link" href title>' . esc_html__($this->loadCancelLinkText, 'inline-comments' ) . '</a>';
 		}
 	}
 

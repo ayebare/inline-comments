@@ -25,13 +25,13 @@ class INCOM_Admin_Options {
 	 * Add settings link on plugin page
 	 */
 	function incom_settings_link($links) { 
-	  $settings_link = '<a href="options-general.php?page=incom.php">'.esc_html__( 'Settings', INCOM_TD ).'</a>'; 
+	  $settings_link = '<a href="options-general.php?page=incom.php">'.esc_html__( 'Settings', 'inline-comments' ).'</a>'; 
 	  array_unshift($links, $settings_link); 
 	  return $links; 
 	}
 
 	function incom_create_menu() {
-		add_options_page( esc_html__( 'Inline Comments', INCOM_TD ), esc_html__( 'Inline Comments', INCOM_TD ), 'manage_options', 'incom.php', array( $this, 'incom_settings_page'));
+		add_options_page( esc_html__( 'Inline Comments', 'inline-comments' ), esc_html__( 'Inline Comments', 'inline-comments' ), 'manage_options', 'incom.php', array( $this, 'incom_settings_page'));
 	}
 
 	function register_incom_settings() {
